@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
+use App\Comment;
+use App\Post;
+use Auth;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,9 +40,15 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        //
+        $post = Post::find($request->post_id);
+        $comment = new Comment;
+        $comment -> body    = $request -> body;
+        $comment -> user_id = Auth::id();
+        $comment -> post_id = $request -> post_id;
+        $comment -> save();
+        return view('posts.show', compact('post'));
     }
 
     /**
