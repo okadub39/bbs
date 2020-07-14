@@ -2911,15 +2911,28 @@ fieldset:disabled a.btn {
 
 .btn-danger {
   color: #fff;
-  background-color: #e3342f;
-  border-color: #e3342f;
+  background-color: #c51f1a;
+  border-color: #c51f1a;
 }
 
 .btn-danger:hover {
   color: #fff;
-  background-color: #d0211c;
+  background-color: #c51f1a;
   border-color: #c51f1a;
 }
+
+.btn-delete {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
+
+.btn-delete:hover {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
+
 
 .btn-danger:focus,
 .btn-danger.focus {
