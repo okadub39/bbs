@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use Auth;
+use JD\Cloudder\Facades\Cloudder;
 
 class PostController extends Controller
 {
@@ -51,6 +52,20 @@ class PostController extends Controller
         $post -> title    = $request -> title;
         $post -> body     = $request -> body;
         $post -> user_id  = Auth::id();
+
+        if ($image = $request->file('image')) {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            //直前にアップロードされた画像のpublicIdを取得する。
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 200,
+                'height'    => 200
+            ]);
+            $post->image_path = $logoUrl;
+            $post->public_id  = $publicId;
+        }
+
         $post -> save();
         return redirect()->route('posts.index');
     }
@@ -113,6 +128,9 @@ class PostController extends Controller
         $post = Post::find($id);
         if(Auth::id() !== $post->user_id){
             return abort(404);
+        }
+        if(isset($post->public_id)){
+            Cloudder::destroyImage($post->public_id);
         }
         $post -> delete();
         return redirect()->route('posts.index');
