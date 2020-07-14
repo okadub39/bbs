@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">タイトル：{{ $post->title }}</h5>
                     <p class="card-text">内容：{{ $post->body }}</p>
-                    <a href="#" class="btn btn-primary">詳細へ</a>
+                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">詳細へ</a>
                 </div>
                 <div class="card-footer text-muted">
                     投稿日時：{{ $post->created_at }}
