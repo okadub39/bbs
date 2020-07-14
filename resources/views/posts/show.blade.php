@@ -7,39 +7,42 @@
             <div class="card-header">
                 <h5>タイトル：{{ $post->title }}</h5>
             </div>
-            <div class="card-body">
-                <p>投稿日時：{{ $post->created_at }}</p>
-                <p>投稿者：{{ $post->user->name }}</p>
-                @if ($post->image_path)
-                    <img src="{{ $post->image_path }}" alt="画像">
-                @endif
-                <p class="card-text">内容：{{ $post->body }}</p>
-                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">
-                編集する</a>
-                <form action='{{ route('posts.destroy', $post->id) }}' method='post'>
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？");'>
-                </form>
-                <div class="row justify-content-center">
-                    @if($post->users()->where('user_id', Auth::id())->exists())
-                        <div class="col-md-3">
+            <div class="card-body row">
+                <div class="col-md-8">
+                    <p>投稿日時：{{ $post->created_at }}</p>
+                    <p>投稿者：{{ $post->user->name }}</p>
+                    @if ($post->image_path)
+                        <img src="{{ $post->image_path }}" alt="画像">
+                    @endif
+                    <p class="card-text">内容：{{ $post->body }}</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">
+                            編集する
+                        </a>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                        <form action='{{ route('posts.destroy', $post->id) }}' method='post'>
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <input type='submit' value='削除' class="btn btn-delete" onclick='return confirm("削除しますか？");'>
+                        </form>
+                    </div>
+                    <div class="col-md-12 justify-content-center" style="margin-bottom:10px;">
+                        @if($post->users()->where('user_id', Auth::id())->exists())
                             <form action="{{ route('unfavorites', $post) }}" method="POST">
                             @csrf
                                 <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
                             </form>
-                        </div>
-                    @else
-                        <div class="col-md-3">
+                        @else
                             <form action="{{ route('favorites', $post) }}" method="POST">
                             @csrf
                                 <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
                             </form>
-                        </div>
-                    @endif
-                </div>
-                <div class="row justify-content-center">
-                    <p>いいね数：{{ $post->users()->count() }}</p>
+                        @endif
+                        <p>いいね数：{{ $post->users()->count() }}</p>
+                    </div>
                 </div>
             </div>
         </div>
