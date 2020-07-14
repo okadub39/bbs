@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+use App\Post;
+use Auth;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
+        //return view('posts.index');
     }
 
     /**
@@ -23,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -32,9 +43,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        //dd($request);
+        $post = new Post;
+        $post -> title    = $request -> title;
+        $post -> body     = $request -> body;
+        $post -> user_id  = Auth::id();
+        $post -> save();
+        return redirect()->route('posts.index');
     }
 
     /**
