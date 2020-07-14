@@ -6,7 +6,7 @@ $ docker-compose up -d --build
 ## web-appの設定
 ```
 $ docker-compose exec web-app composer install
-$ docker-compose exec web-app cp .env.example .env
+$ ç
 $ docker-compose exec web-app php artisan key:generate
 $ docker-compose exec web-app php artisan migrate
 ```
