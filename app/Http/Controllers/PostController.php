@@ -132,6 +132,7 @@ class PostController extends Controller
         if(isset($post->public_id)){
             Cloudder::destroyImage($post->public_id);
         }
+        $post -> comments()->delete();
         $post -> delete();
         return redirect()->route('posts.index');
     }
