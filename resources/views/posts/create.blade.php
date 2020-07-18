@@ -20,6 +20,22 @@
                     <input type="text" class="form-control" placeholder="タイトルを入力して下さい" name="title">
                 </div>
                 <div class="form-group">
+                    <label>監督</label>
+                    <input type="text" class="form-control" placeholder="監督" name="director">
+                </div>
+                <div class="form-group">
+                    <label>出演</label>
+                    <input type="text" class="form-control" placeholder="出演" name="actor">
+                </div>
+                <div class="form-group">
+                    <label>時間</label>
+                    <input type="text" class="form-control" placeholder="時間" name="time">分
+                </div>
+                <div class="form-group">
+                    <label>初回公開日</label>
+                    <input type="text" class="form-control" placeholder="初回公開日" name="release">
+                </div>
+                <div class="form-group">
                     <label>内容</label>
                     <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
                 </div>

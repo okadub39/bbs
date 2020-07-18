@@ -23,7 +23,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        //$posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(3);
         $posts->load('user');
         return view('posts.index', compact('posts'));
         //return view('posts.index');
@@ -50,7 +51,11 @@ class PostController extends Controller
         //dd($request);
         $post = new Post;
         $post -> title    = $request -> title;
+        $post -> director = $request -> director;
         $post -> body     = $request -> body;
+        $post -> time     = $request -> time;
+        $post -> actor    = $request -> actor;
+        $post -> release  = $request -> release;
         $post -> user_id  = Auth::id();
 
         if ($image = $request->file('image')) {
@@ -112,7 +117,11 @@ class PostController extends Controller
             return abort(404);
         }
         $post -> title    = $request -> title;
+        $post -> director = $request -> director;
         $post -> body     = $request -> body;
+        $post -> time     = $request -> time;
+        $post -> actor    = $request -> actor;
+        $post -> release  = $request -> release;
         $post -> save();
         return view('posts.show', compact('post'));
     }
@@ -132,6 +141,7 @@ class PostController extends Controller
         if(isset($post->public_id)){
             Cloudder::destroyImage($post->public_id);
         }
+        $post -> comments()->delete();
         $post -> delete();
         return redirect()->route('posts.index');
     }

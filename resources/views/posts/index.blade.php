@@ -4,19 +4,29 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2>投稿一覧</h2>
+            <h2>映画一覧</h2>
             <div class="card text-left">
                 @foreach ($posts as $post)
                 <div class="row card-body">
                     <div class="col-md-8">
-                        <h5 class="card-title">タイトル：{{ $post->title }}</h5>
-                        <p class="card-text">内容：{{ $post->body }}</p>
-                        @if ($post->image_path)
-                            <img src="{{ $post->image_path }}" alt="画像">
-                        @endif
-                        <p class="card-text">投稿者：{{ $post->user->name }}</p>
+                        <div class="row">
+                            <div class="text-muted col-md-12" style="padding:0px; margin-left:20px;">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                            </div>
+                            <div class="text-muted col-md-12" style="padding:0px; margin-left:20px;">
+                                @if ($post->image_path)
+                                    <img src="{{ $post->image_path }}" alt="画像">
+                                @endif
+                            </div>
+                        </div>
                         <div class="text-muted col-md-12" style="padding:0px;">
-                            投稿日時：{{ $post->created_at }}
+                            <p class="card-text">投稿者：{{ $post->user->name }}|投稿日時：{{ $post->created_at }}</p>
+                        </div>
+                        <div class="text-muted col-md-12" style="padding:0px;">
+                            <p class="card-text">監督：{{ $post->director }}|出演者：{{ $post->actor }}</p>
+                        </div>
+                        <div class="text-muted col-md-12" style="padding:0px;">
+                            <p class="card-text">時間：{{ $post->time }}|公開初日：{{ $post->release }}</p>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -44,6 +54,9 @@
                     </div>
                 </div>
                 @endforeach
+            </div>
+            <div class="d-flex justify-content-center mb-5">
+                {{ $posts->links() }}
             </div>
         </div>
         <div class="col-md-2 text-center" style="padding-top:50px;">

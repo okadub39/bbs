@@ -21,6 +21,22 @@
                     <input type="text" class="form-control" value="{{ $post->title }}" name="title">
                 </div>
                 <div class="form-group">
+                    <label>監督</label>
+                    <input type="text" class="form-control" value="{{ $post->director }}" name="director">
+                </div>
+                <div class="form-group">
+                    <label>出演</label>
+                    <input type="text" class="form-control" value="{{ $post->actor }}" name="actor">
+                </div>
+                <div class="form-group">
+                    <label>時間</label>
+                    <input type="text" class="form-control" value="{{ $post->time }}" name="time">分
+                </div>
+                <div class="form-group">
+                    <label>初回公開日</label>
+                    <input type="text" class="form-control" value="{{ $post->release }}" name="release">
+                </div>
+                <div class="form-group">
                     <label>内容</label>
                     <textarea class="form-control" rows="5" name="body">{{ $post->body }}</textarea>
                 </div>
