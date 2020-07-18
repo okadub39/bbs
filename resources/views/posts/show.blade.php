@@ -9,12 +9,18 @@
             </div>
             <div class="card-body row">
                 <div class="col-md-8">
-                    <p>投稿日時：{{ $post->created_at }}</p>
-                    <p>投稿者：{{ $post->user->name }}</p>
+                    <div class="text-muted col-md-12" style="padding:0px;">
+                        <p class="card-text">投稿者：{{ $post->user->name }}|投稿日時：{{ $post->created_at }}</p>
+                    </div>
+                    <div class="text-muted col-md-12" style="padding:0px;">
+                        <p class="card-text">監督：{{ $post->director }}|出演者：{{ $post->actor }}</p>
+                    </div>
+                    <div class="text-muted col-md-12" style="padding:0px;">
+                        <p class="card-text">時間：{{ $post->time }}|公開初日：{{ $post->release }}</p>
+                    </div>
                     @if ($post->image_path)
                         <img src="{{ $post->image_path }}" alt="画像">
                     @endif
-                    <p class="card-text">監督：{{ $post->director }}</p>
                     <p class="card-text">内容：{{ $post->body }}</p>
                 </div>
                 <div class="col-md-3">
@@ -50,19 +56,6 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('comments.store') }}" method="POST">
-            {{csrf_field()}}
-                <input type="hidden" name="post_id" value="{{ $post->id }}">
-                <div class="form-group">
-                    <label>コメント</label>
-                    <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">コメントする</button>
-            </form>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
             @foreach ($post->comments as $comment)
             <div class="card mt-3">
                 <h5 class="card-header">投稿者：{{ $comment->user->name }}</h5>
@@ -72,6 +65,19 @@
                 </div>
             </div>
             @endforeach
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="{{ route('comments.store') }}" method="POST">
+            {{csrf_field()}}
+                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                <div class="form-group">
+                    <label>コメント</label>
+                    <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">コメントする</button>
+            </form>
         </div>
     </div>
 </div>

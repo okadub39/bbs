@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label>時間</label>
-                    <input type="text" class="form-control" placeholder="時間" name="actor">分
+                    <input type="text" class="form-control" placeholder="時間" name="time">分
                 </div>
                 <div class="form-group">
                     <label>初回公開日</label>
