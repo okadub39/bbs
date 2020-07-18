@@ -7,6 +7,7 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
@@ -63,20 +64,25 @@
             }
         </style>
     </head>
-    <body>
+    <body id="top_page">
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel BBS
+                    Movie Reviews
+                </div>
+                <div class="comment">
+                    <h4>映画レビューサイトについて</h4>
+                    <p>映画の投稿やコメントを追加・閲覧したい場合はぜひ登録をしてください。</p>
+                    <p>自分以外の人が新規追加した投稿は、編集・削除はできませんのでご了承ください。</p>
                 </div>
                 <div class="links">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/posts') }}">BBS</a>
+                        <a href="{{ url('/posts') }}" class="btn view">閲覧する</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" class="btn login">ログイン</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}" class="btn register">登録</a>
                         @endif
                     @endauth
                 @endif
