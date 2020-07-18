@@ -14,6 +14,7 @@
                     @if ($post->image_path)
                         <img src="{{ $post->image_path }}" alt="画像">
                     @endif
+                    <p class="card-text">監督：{{ $post->director }}</p>
                     <p class="card-text">内容：{{ $post->body }}</p>
                 </div>
                 <div class="col-md-3">

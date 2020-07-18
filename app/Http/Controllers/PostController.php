@@ -50,7 +50,11 @@ class PostController extends Controller
         //dd($request);
         $post = new Post;
         $post -> title    = $request -> title;
+        $post -> director = $request -> director;
         $post -> body     = $request -> body;
+        $post -> time     = $request -> time;
+        $post -> actor    = $request -> actor;
+        $post -> release  = $request -> release;
         $post -> user_id  = Auth::id();
 
         if ($image = $request->file('image')) {
@@ -112,7 +116,11 @@ class PostController extends Controller
             return abort(404);
         }
         $post -> title    = $request -> title;
+        $post -> director = $request -> director;
         $post -> body     = $request -> body;
+        $post -> time     = $request -> time;
+        $post -> actor    = $request -> actor;
+        $post -> release  = $request -> release;
         $post -> save();
         return view('posts.show', compact('post'));
     }
