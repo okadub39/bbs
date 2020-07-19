@@ -29,14 +29,14 @@
                 </div>
                 <div class="form-group">
                     <label>時間</label>
-                    <input type="text" class="form-control" placeholder="時間" name="time">分
+                    <input type="text" class="form-control" placeholder="00:00:00" name="time">分
                 </div>
                 <div class="form-group">
                     <label>初回公開日</label>
-                    <input type="text" class="form-control" placeholder="初回公開日" name="release">
+                    <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="release">
                 </div>
                 <div class="form-group">
-                    <label>内容</label>
+                    <label>内容(1,000文字まで)</label>
                     <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
                 </div>
                 <div class="form-group">
