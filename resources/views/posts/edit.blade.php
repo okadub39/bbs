@@ -37,7 +37,7 @@
                     <input type="text" class="form-control" value="{{ $post->release }}" name="release">
                 </div>
                 <div class="form-group">
-                    <label>内容</label>
+                    <label>内容(1,000文字まで)</label>
                     <textarea class="form-control" rows="5" name="body">{{ $post->body }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">更新する</button>
