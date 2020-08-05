@@ -97,9 +97,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        if(Auth::id() !== $post->user_id){
-            return abort(404);
-        }
+        // if(Auth::id() !== $post->user_id){
+        //     return abort(404);
+        // }
         return view('posts.edit', compact('post'));
     }
 
@@ -113,9 +113,9 @@ class PostController extends Controller
     public function update(PostRequest $request, $id)
     {
         $post = Post::find($id);
-        if(Auth::id() !== $post->user_id){
-            return abort(404);
-        }
+        // if(Auth::id() !== $post->user_id){
+        //     return abort(404);
+        // }
         $post -> title    = $request -> title;
         $post -> director = $request -> director;
         $post -> body     = $request -> body;
@@ -135,9 +135,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        if(Auth::id() !== $post->user_id){
-            return abort(404);
-        }
+        // if(Auth::id() !== $post->user_id){
+        //     return abort(404);
+        // }
         if(isset($post->public_id)){
             Cloudder::destroyImage($post->public_id);
         }
